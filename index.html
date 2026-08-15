@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="ar-EG" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دراسة جدوى Sendora</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/tabler-icons.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #a78bfa;
+            --primary-dark: #8b5cf6;
+            --primary-darker: #7c3aed;
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #242424;
+            --text-primary: #ffffff;
+            --text-secondary: #a3a3a3;
+            --text-tertiary: #6b7280;
+            --accent-purple: #a78bfa;
+            --success: #34d399;
+            --warning: #fbbf24;
+            --danger: #f87171;
+            --border: #333333;
+            --card-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            letter-spacing: -0.015em;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            backdrop-filter: blur(20px);
+            background: rgba(15, 15, 15, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+        }
+
+        .logo i {
+            font-size: 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-darker));
+            color: white;
+            padding: 14px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 32px rgba(167, 139, 250, 0.3);
+        }
+
+        .cta-button i {
+            font-size: 18px;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: var(--primary);
+            font-size: 42px;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 28px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(167, 139, 250, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(167, 139, 250, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            color: var(--primary);
+            font-size: 24px;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 28px;
+        }
+
+        /* Stat Cards */
+        .stat-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 24px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+
+        /* Comparison */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin: 40px 0;
+        }
+
+        .comparison-card {
+            background: var(--card-bg);
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            padding: 32px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .comparison-card.success {
+            border-color: rgba(52, 211, 153, 0.3);
+            background: rgba(52, 211, 153, 0.05);
+        }
+
+        .comparison-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .comparison-card h3 i {
+            font-size: 28px;
+        }
+
+        .comparison-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .comparison-item i {
+            font-size: 18px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .comparison-item.success i {
+            color: var(--success);
+        }
+
+        .comparison-item.danger i {
+            color: var(--danger);
+        }
+
+        /* Highlight Box */
+        .highlight {
+            background: rgba(167, 139, 250, 0.08);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            padding: 24px;
+            border-radius: 16px;
+            margin: 40px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .highlight-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+        }
+
+        .highlight-title i {
+            font-size: 18px;
+        }
+
+        .highlight p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .highlight p strong {
+            color: var(--text-primary);
+        }
+
+        /* Charts */
+        .chart-container {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 32px;
+            border-radius: 16px;
+            margin: 40px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .chart-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chart-title i {
+            color: var(--primary);
+            font-size: 24px;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 350px;
+        }
+
+        /* Risk Matrix */
+        .risk-matrix {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 32px;
+            border-radius: 16px;
+            margin: 40px 0;
+            backdrop-filter: blur(10px);
+            overflow-x: auto;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .matrix-table th {
+            background: rgba(167, 139, 250, 0.1);
+            color: var(--primary);
+            padding: 12px;
+            text-align: right;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .matrix-table td {
+            padding: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .risk-high {
+            background: rgba(248, 113, 113, 0.1);
+            color: var(--danger);
+            font-weight: 500;
+        }
+
+        .risk-medium {
+            background: rgba(251, 191, 36, 0.1);
+            color: var(--warning);
+            font-weight: 500;
+        }
+
+        .risk-low {
+            background: rgba(52, 211, 153, 0.1);
+            color: var(--success);
+            font-weight: 500;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 32px;
+            gap: 24px;
+            position: relative;
+        }
+
+        .timeline-marker {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: rgba(167, 139, 250, 0.15);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .timeline-content h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-content p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .pricing-card {
+            background: var(--card-bg);
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            padding: 32px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--primary);
+            background: rgba(167, 139, 250, 0.08);
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background: rgba(167, 139, 250, 0.2);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 0.02em;
+        }
+
+        .pricing-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .pricing-price {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 16px 0;
+            letter-spacing: -0.02em;
+        }
+
+        .pricing-period {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .pricing-features {
+            text-align: right;
+            margin-bottom: 24px;
+        }
+
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .pricing-feature i {
+            color: var(--success);
+            font-size: 18px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-wrapper {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <i class="ti ti-send"></i>
+                Sendora
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Sendora</h1>
+                <p class="hero-subtitle">منصة SaaS متقدمة لإدارة وإرسال رسائل SMS من خلال أجهزتك وشرائحك الخاصة بكفاءة عالية وتكلفة منخفضة جداً</p>
+                <a href="#problem" class="cta-button">
+                    <i class="ti ti-arrow-down"></i>
+                    اعرف المزيد
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="ti ti-alert-circle"></i>
+                    المشكلة الأساسية
+                </h2>
+                <p class="section-subtitle">الشركات والمطورون يحتاجون خدمات SMS لكن الأسعار التقليدية مرتفعة جداً</p>
+            </div>
+
+            <div class="comparison">
+                <div class="comparison-card">
+                    <h3>
+                        <i class="ti ti-x"></i>
+                        الحل التقليدي
+                    </h3>
+                    <div class="comparison-item danger">
+                        <i class="ti ti-circle-x"></i>
+                        <span>5,000 رسالة = 5,000 جنيه</span>
+                    </div>
+                    <div class="comparison-item danger">
+                        <i class="ti ti-circle-x"></i>
+                        <span>20,000 رسالة = 12,000 جنيه</span>
+                    </div>
+                    <div class="comparison-item danger">
+                        <i class="ti ti-circle-x"></i>
+                        <span>100,000 رسالة = 45,000 جنيه</span>
+                    </div>
+                    <div class="comparison-item danger">
+                        <i class="ti ti-circle-x"></i>
+                        <span>التكاليف تتناسب طردياً مع الحجم</span>
+                    </div>
+                </div>
+
+                <div class="comparison-card success">
+                    <h3>
+                        <i class="ti ti-check"></i>
+                        حل Sendora (BYOD)
+                    </h3>
+                    <div class="comparison-item success">
+                        <i class="ti ti-circle-check"></i>
+                        <span>استخدم باقتك الموجودة من Vodafone</span>
+                    </div>
+                    <div class="comparison-item success">
+                        <i class="ti ti-circle-check"></i>
+                        <span>1 Flex = 1 رسالة SMS</span>
+                    </div>
+                    <div class="comparison-item success">
+                        <i class="ti ti-circle-check"></i>
+                        <span>اشتراك شهري ثابت منخفض جداً</span>
+                    </div>
+                    <div class="comparison-item success">
+                        <i class="ti ti-circle-check"></i>
+                        <span>توفير 80-90% من التكاليف</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-group">
+                <div class="stat-card">
+                    <div class="stat-label">تقييم المشكلة</div>
+                    <div class="stat-value">⭐⭐⭐⭐⭐</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">حجم السوق</div>
+                    <div class="stat-value">⭐⭐⭐⭐</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">التميز</div>
+                    <div class="stat-value">⭐⭐⭐⭐⭐</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">تكلفة البدء</div>
+                    <div class="stat-value">⭐⭐⭐⭐⭐</div>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <div class="highlight-title">
+                    <i class="ti ti-bulb"></i>
+                    الفارق الاقتصادي الرئيسي
+                </div>
+                <p>Vodafone مصر تسمح رسميًا باستخدام <strong>Flex</strong> في إرسال رسائل SMS حيث <strong>1 Flex = 1 SMS</strong>. هذا يعني تكاليف أقل بـ 80-90 مرة من الحلول التقليدية!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="ti ti-bulb-on"></i>
+                    الحل المقترح
+                </h2>
+                <p class="section-subtitle">كيف يعمل نموذج Sendora</p>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="ti ti-device-mobile"></i>
+                    </div>
+                    <h3>تطبيق Android</h3>
+                    <p>تطبيق على جهازك الشخصي يدير الرسائل بكفاءة مع دعم أجهزة متعددة وشرائح متعددة</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="ti ti-cloud"></i>
+                    </div>
+                    <h3>منصة سحابية</h3>
+                    <p>نظام قوي يدير الرسائل والمستخدمين والفواتير والإحصائيات بأمان عالي</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="ti ti-plug-connected"></i>
+                    </div>
+                    <h3>API متقدمة</h3>
+                    <p>واجهة برمجية قوية تسمح للمطورين بدمج Sendora في تطبيقاتهم بسهولة</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="ti ti-dashboard"></i>
+                    </div>
+                    <h3>لوحة تحكم شاملة</h3>
+                    <p>إدارة كاملة للحملات والقوالب والجداول الزمنية والإحصائيات المفصلة</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="ti ti-git-branch"></i>
+                    </div>
+                    <h3>توزيع ذكي</h3>
+                    <p>تقسيم الرسائل على أجهزة وشرائح متعددة لضمان أقصى سرعة وموثوقية</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="ti ti-shield-check"></i>
+                    </div>
+                    <h3>أمان عالي</h3>
+                    <p>معايير عالية في حماية البيانات والامتثال الكامل للقوانين المصرية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="ti ti-target"></i>
+                    السوق المستهدف
+                </h2>
+                <p class="section-subtitle">ترتيب مراحل التطوير والتوسع</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">1</div>
+                    <div class="timeline-content">
+                        <h4>المرحلة الأولى: OTP والتنبيهات</h4>
+                        <p>التركيز على الرسائل العملية (رموز تسجيل الدخول، استعادة كلمات المرور، إشعارات الطلبات، إشعارات الدفع، تذكيرات المواعيد). هذه المرحلة لديها أقل مخاطر تنظيمية.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">2</div>
+                    <div class="timeline-content">
+                        <h4>المرحلة الثانية: الحملات والتسويق</h4>
+                        <p>إضافة ميزات متقدمة (حملات تسويقية، رسائل جماعية، قوالب، جدولة). لكن بحذر وامتثال كامل للقوانين.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">3</div>
+                    <div class="timeline-content">
+                        <h4>المرحلة الثالثة: حلول Enterprise</h4>
+                        <p>رسائل غير محدودة، فرق متعددة، API متقدمة، دعم مخصص 24/7 للعملاء الكبار.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <div class="highlight-title">
+                    <i class="ti ti-alert-triangle"></i>
+                    ملاحظة استراتيجية مهمة
+                </div>
+                <p>من الأفضل البدء بـ <strong>Transactional SMS</strong> فقط في البداية. <strong>Marketing SMS</strong> يحمل مخاطر تنظيمية أعلى بكثير.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financial Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="ti ti-coin"></i>
+                    التحليل المالي
+                </h2>
+                <p class="section-subtitle">إمكانيات الربح والاستثمار</p>
+            </div>
+
+            <div class="stat-group">
+                <div class="stat-card">
+                    <div class="stat-label">الإمكانية التجارية</div>
+                    <div class="stat-value">8/10</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">هامش الربح المحتمل</div>
+                    <div class="stat-value">70-80%</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">قابلية التوسع</div>
+                    <div class="stat-value">⭐⭐⭐⭐⭐</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">صعوبة التطوير</div>
+                    <div class="stat-value">⭐⭐⭐</div>
+                </div>
+            </div>
+
+            <!-- Price Comparison -->
+            <div class="chart-container">
+                <div class="chart-title">
+                    <i class="ti ti-chart-bars"></i>
+                    مقارنة التكاليف: Sendora vs المنافسون
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="priceChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Margin Analysis -->
+            <div class="grid-2">
+                <div class="card">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+                        <i class="ti ti-wallet" style="color: var(--primary);"></i>
+                        نموذج الإيرادات
+                    </h3>
+                    <p style="margin-bottom: 16px;">Subscription-based: اشتراكات شهرية ثابتة بدلاً من الدفع لكل رسالة.</p>
+                    <p style="color: var(--success); font-weight: 600; margin-top: 16px;">✓ هذا يضمن هامش ربح مرتفع جداً</p>
+                </div>
+
+                <div class="card">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+                        <i class="ti ti-trending-up" style="color: var(--success);"></i>
+                        مزايا هذا النموذج
+                    </h3>
+                    <p style="margin-bottom: 16px;">لا توجد تكاليف مباشرة لكل رسالة. التكاليف الأساسية: خوادم، قاعدة بيانات، دعم، تطوير.</p>
+                    <p style="color: var(--primary); font-weight: 600; margin-top: 16px;">✓ هامش ربح قد يصل إلى 70-80%</p>
+                </div>
+            </div>
+
+            <!-- Margin Projection -->
+            <div class="chart-container">
+                <div class="chart-title">
+                    <i class="ti ti-percentage"></i>
+                    توقع هامش الربح الإجمالي حسب عدد العملاء
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="marginChart"></canvas>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <div class="highlight-title">
+                    <i class="ti ti-key"></i>
+                    المفتاح الاقتصادي الرئيسي
+                </div>
+                <p>المعادلة البسيطة: <strong>MRR (الإيرادات الشهرية المتكررة) - Cost to Serve = الربح</strong></p>
+                <p style="margin-top: 8px;">بدلاً من المعادلة التقليدية: Price per SMS - SMS Provider Cost</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="ti ti-price-tag"></i>
+                    نموذج التسعير المقترح
+                </h2>
+                <p class="section-subtitle">خطط اشتراكية مرنة وملائمة</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-badge">للبدء</div>
+                    <h3 class="pricing-title">Starter</h3>
+                    <div class="pricing-price">99</div>
+                    <div class="pricing-period">جنيه/شهر</div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <i class="ti ti-check"></i>
+                            <span>10,000 رسالة/شهر</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="ti ti-check"></i>
+                            <span>جهاز واحد</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="ti ti-check"></i>
+                            <span>Dashboard أساسي</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="ti ti-check"></i>
+                            <span>دعم عبر البريد</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-badge">الأشهر</div>
+                    <h3 class="pricing-title">Professional</h3>
+                    <div class="pricing-price">299</div>
+                    <div class="pricing-period">جنيه/شهر</div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <i class="ti ti-check"></i>
+                            <span>50,000 رسالة/شهر</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="ti ti-check"></i>
+                            <span>أجهزة متعددة</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="ti ti-check"></i>
+                            <span>API متقدمة</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="ti ti-check"></i>
+                            <span>قوالب وحملات</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-badge">للشركات</div>
+                    <h3 class="pricing-title">Enterprise</h3>
+                    <div class="pricing-price">999+</div>
+                    <div class="pricing-period">جنيه/شهر</div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <i class="ti ti-check"></i>
+                            <span>رسائل غير محدودة</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="ti ti-check"></i>
+                            <span>شرائح متعددة</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="ti ti-check"></i>
+                            <span>فريق مخصص</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="ti ti-check"></i>
+                            <span>دعم 24/7</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Revenue Projection -->
+            <div class="chart-container">
+                <div class="chart-title">
+                    <i class="ti ti-trending-up"></i>
+                    توقع الإيرادات السنوية (سيناريوهات 3 سنوات)
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Risk Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="ti ti-alert-hexagon"></i>
+                    تقييم المخاطر
+                </h2>
+                <p class="section-subtitle">التحديات والمخاطر المحتملة</p>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon" style="background: rgba(248, 113, 113, 0.15); color: var(--danger);">
+                        <i class="ti ti-scale"></i>
+                    </div>
+                    <h3>المخاطر التنظيمية</h3>
+                    <p>غير محسوم: هل يحتاج Sendora ترخيص Bulk SMS من NTRA؟ يجب الحصول على رأي رسمي قبل الإطلاق التجاري.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon" style="background: rgba(248, 113, 113, 0.15); color: var(--danger);">
+                        <i class="ti ti-phone"></i>
+                    </div>
+                    <h3>مخاطر المشغلين</h3>
+                    <p>هل سيسمح Vodafone/Orange بـ automated SMS sending من تطبيق؟ يجب اختبار هذا عمليًا قبل الإطلاق.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon" style="background: rgba(251, 191, 36, 0.15); color: var(--warning);">
+                        <i class="ti ti-mail-opened"></i>
+                    </div>
+                    <h3>مخاطر التسويق</h3>
+                    <p>Marketing SMS أخطر: NTRA لديه إجراءات صارمة ضد الـ spam. ننصح البدء بـ Transactional فقط.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon" style="background: rgba(52, 211, 153, 0.15); color: var(--success);">
+                        <i class="ti ti-lock"></i>
+                    </div>
+                    <h3>حماية البيانات</h3>
+                    <p>يجب الامتثال الكامل لقانون حماية البيانات الشخصية المصري رقم 151/2020.</p>
+                </div>
+            </div>
+
+            <!-- Risk Matrix -->
+            <div class="risk-matrix">
+                <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+                    <i class="ti ti-chart-dots" style="color: var(--primary); font-size: 24px;"></i>
+                    مصفوفة تقييم المخاطر
+                </h3>
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th>نوع المخاطرة</th>
+                            <th>الاحتمالية</th>
+                            <th>التأثير</th>
+                            <th>المستوى</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ترخيص NTRA</td>
+                            <td class="risk-medium">متوسط</td>
+                            <td class="risk-high">عالي جداً</td>
+                            <td class="risk-high">حرج</td>
+                        </tr>
+                        <tr>
+                            <td>حظر من المشغلين</td>
+                            <td class="risk-high">عالي</td>
+                            <td class="risk-high">عالي جداً</td>
+                            <td class="risk-high">حرج</td>
+                        </tr>
+                        <tr>
+                            <td>قيود Spam</td>
+                            <td class="risk-medium">متوسط</td>
+                            <td class="risk-high">عالي</td>
+                            <td class="risk-high">عالي</td>
+                        </tr>
+                        <tr>
+                            <td>حماية البيانات</td>
+                            <td class="risk-low">منخفض</td>
+                            <td class="risk-medium">متوسط</td>
+                            <td class="risk-low">متوسط</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="highlight">
+                <div class="highlight-title">
+                    <i class="ti ti-document"></i>
+                    الخلاصة القانونية
+                </div>
+                <p>Sendora بصورته الحالية <strong>لا يظهر أنه يقدم شبكة اتصالات</strong> (لا يملك SIM، لا يملك أرقام، لا يملك شبكة، لا يدفع لكل رسالة). لكن <strong>يجب الحصول على تصنيف رسمي من NTRA</strong> قبل الإطلاق التجاري.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Advantages -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="ti ti-settings-automation"></i>
+                    المزايا التقنية
+                </h2>
+                <p class="section-subtitle">ما يميز Sendora في التطوير</p>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="ti ti-git-branch"></i>
+                    </div>
+                    <h3>Load Balancing ذكي</h3>
+                    <p>توزيع الرسائل على شرائح متعددة يحسّن الـ Throughput والموثوقية وتحمل الأعطال.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="ti ti-player-play"></i>
+                    </div>
+                    <h3>قائمة انتظار متقدمة</h3>
+                    <p>نظام رسائل قوي مع إعادة محاولة تلقائية وتوقيت محسّن وتتبع حالة دقيق.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="ti ti-chart-line"></i>
+                    </div>
+                    <h3>تحليلات شاملة</h3>
+                    <p>مراقبة دقيقة مع سجلات تفصيلية وتقارير إحصائية وتنبيهات فورية.</p>
+                </div>
+            </div>
+
+            <!-- Throughput Chart -->
+            <div class="chart-container">
+                <div class="chart-title">
+                    <i class="ti ti-speed"></i>
+                    توقع الـ Throughput لكل SIM (بيانات تحتاج تأكيد عملي)
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="throughputChart"></canvas>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <div class="highlight-title">
+                    <i class="ti ti-alert-circle"></i>
+                    ملاحظة تقنية مهمة
+                </div>
+                <p>الـ Throughput الفعلي لكل SIM <strong>يحتاج اختبار عملي دقيق</strong>. لم نجد أرقام رسمية منشورة من المشغلين المصريين حول حدود SMS/ساعة.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendations -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="ti ti-list-check"></i>
+                    التوصيات النهائية
+                </h2>
+                <p class="section-subtitle">الخطوات الحرجة قبل الإطلاق</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">1</div>
+                    <div class="timeline-content">
+                        <h4>التحقق من NTRA (الأساسي)</h4>
+                        <p>الحصول على تصنيف رسمي: هل يحتاج Sendora ترخيصًا؟ هذا قرار قانوني حرج لا يمكن التراجع عنه.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">2</div>
+                    <div class="timeline-content">
+                        <h4>التحقق من المشغلين</h4>
+                        <p>اختبار عملي: هل Vodafone/Orange/e&/WE تسمح بـ automated SMS من تطبيق Android؟</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">3</div>
+                    <div class="timeline-content">
+                        <h4>قياس الحدود التقنية</h4>
+                        <p>اختبار عملي: كم رسالة/ساعة لكل SIM قبل حدوث throttling أو blocking؟</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">4</div>
+                    <div class="timeline-content">
+                        <h4>بناء MVP محدود</h4>
+                        <p>البدء بـ Transactional SMS فقط (OTP, Notifications). عدم إضافة Marketing في البداية.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">5</div>
+                    <div class="timeline-content">
+                        <h4>الامتثال القانوني من اليوم الأول</h4>
+                        <p>تطبيق Opt-in/Opt-out, Spam Detection, Audit Logs, Anti-Abuse Policies من البداية.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <div class="highlight-title">
+                    <i class="ti ti-check"></i>
+                    التوصية النهائية
+                </div>
+                <p><strong>نعم، نوصي بتنفيذ Sendora</strong> كـ MVP محدود بـ Transactional SMS.</p>
+                <p style="margin-top: 8px;"><strong>لكن:</strong> لا نوصي بإنفاق رأس مال كبير قبل حسم الجوانب التنظيمية والقيود التقنية من المشغلين.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Requirements -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="ti ti-database"></i>
+                    البيانات المطلوبة للدراسة المالية الكاملة
+                </h2>
+                <p class="section-subtitle">معلومات إضافية لتحويل هذا إلى نموذج مالي دقيق</p>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="ti ti-price-tag"></i>
+                    </div>
+                    <h3>تحديد الأسعار النهائية</h3>
+                    <p>تأكيد أسعار الاشتراكات (هل 99/299/999 واقعية أم تحتاج تعديل؟)</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="ti ti-users-group"></i>
+                    </div>
+                    <h3>توقع عدد العملاء</h3>
+                    <p>كم عميل متوقع في السنة الأولى والثانية والثالثة؟</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="ti ti-calculator"></i>
+                    </div>
+                    <h3>متوسط الاستخدام</h3>
+                    <p>متوسط عدد الرسائل لكل عميل في الشهر (مثال: 5000، 15000؟)</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="ti ti-server"></i>
+                    </div>
+                    <h3>تكاليف البنية التحتية</h3>
+                    <p>تكلفة الخوادم السحابية والـ Database والـ Bandwidth المتوقعة شهريًا</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="ti ti-megaphone"></i>
+                    </div>
+                    <h3>ميزانية التسويق</h3>
+                    <p>الإنفاق الشهري على التسويق وتكلفة الحصول على العميل (CAC)</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="ti ti-users"></i>
+                    </div>
+                    <h3>هيكل الفريق</h3>
+                    <p>عدد الموظفين (مطورين، دعم، تسويق) والرواتب التقريبية</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <div class="highlight-title">
+                    <i class="ti ti-folder-check"></i>
+                    المخرجات المتوقعة بعد توفير البيانات
+                </div>
+                <p style="margin-bottom: 8px;">بعد توفير البيانات السابقة، سيكون لدينا نموذج مالي كامل يتضمن:</p>
+                <p>✓ تكلفة التأسيس والمصروفات الشهرية</p>
+                <p>✓ توقع الإيرادات والأرباح لـ 3 سنوات</p>
+                <p>✓ نقطة التعادل (Breakeven)</p>
+                <p>✓ سيناريوهات متحفظة/واقعية/متفائلة</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="margin-bottom: 8px;">Sendora - دراسة جدوى شاملة</p>
+            <p style="font-size: 12px; opacity: 0.6;">تم إنشاؤها بواسطة Claude | © 2026 جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <script>
+        // Price Comparison Chart
+        const priceCtx = document.getElementById('priceChart');
+        if (priceCtx) {
+            new Chart(priceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['5,000', '20,000', '100,000', '1,000,000'],
+                    datasets: [
+                        {
+                            label: 'SMS Gateway التقليدي',
+                            data: [5000, 12000, 45000, 380000],
+                            backgroundColor: 'rgba(248, 113, 113, 0.6)',
+                            borderColor: 'rgba(248, 113, 113, 1)',
+                            borderWidth: 0,
+                            borderRadius: 8
+                        },
+                        {
+                            label: 'Sendora (اشتراك شهري)',
+                            data: [99, 299, 999, 999],
+                            backgroundColor: 'rgba(52, 211, 153, 0.6)',
+                            borderColor: 'rgba(52, 211, 153, 1)',
+                            borderWidth: 0,
+                            borderRadius: 8
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { 
+                            display: true, 
+                            position: 'top',
+                            labels: { color: 'rgba(255, 255, 255, 0.7)', padding: 16 }
+                        }
+                    },
+                    scales: {
+                        y: { 
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255, 255, 255, 0.06)' },
+                            ticks: { 
+                                color: 'rgba(255, 255, 255, 0.5)',
+                                callback: function(value) { return value.toLocaleString() + ' جنيه'; } 
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: 'rgba(255, 255, 255, 0.7)' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Margin Chart
+        const marginCtx = document.getElementById('marginChart');
+        if (marginCtx) {
+            new Chart(marginCtx, {
+                type: 'line',
+                data: {
+                    labels: ['1', '10', '50', '100', '500', '1000'],
+                    datasets: [{
+                        label: 'هامش الربح الإجمالي (%)',
+                        data: [20, 45, 65, 72, 78, 80],
+                        borderColor: 'rgba(167, 139, 250, 1)',
+                        backgroundColor: 'rgba(167, 139, 250, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointBackgroundColor: 'rgba(167, 139, 250, 1)',
+                        pointBorderColor: '#0f0f0f',
+                        pointBorderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { 
+                            display: true, 
+                            position: 'top',
+                            labels: { color: 'rgba(255, 255, 255, 0.7)', padding: 16 }
+                        }
+                    },
+                    scales: {
+                        y: { 
+                            beginAtZero: true, 
+                            max: 100,
+                            grid: { color: 'rgba(255, 255, 255, 0.06)' },
+                            ticks: { color: 'rgba(255, 255, 255, 0.5)' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: 'rgba(255, 255, 255, 0.7)' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Revenue Projection Chart
+        const revenueCtx = document.getElementById('revenueChart');
+        if (revenueCtx) {
+            new Chart(revenueCtx, {
+                type: 'line',
+                data: {
+                    labels: ['شهر 1', 'شهر 6', 'شهر 12', 'شهر 18', 'شهر 24', 'شهر 30', 'شهر 36'],
+                    datasets: [
+                        {
+                            label: 'متفائل',
+                            data: [5000, 50000, 200000, 500000, 1200000, 2500000, 4500000],
+                            borderColor: 'rgba(52, 211, 153, 1)',
+                            backgroundColor: 'rgba(52, 211, 153, 0.1)',
+                            borderWidth: 2.5,
+                            tension: 0.4,
+                            pointRadius: 4
+                        },
+                        {
+                            label: 'واقعي',
+                            data: [3000, 25000, 100000, 250000, 600000, 1200000, 2000000],
+                            borderColor: 'rgba(167, 139, 250, 1)',
+                            backgroundColor: 'rgba(167, 139, 250, 0.1)',
+                            borderWidth: 2.5,
+                            tension: 0.4,
+                            pointRadius: 4
+                        },
+                        {
+                            label: 'متحفظ',
+                            data: [1000, 8000, 30000, 70000, 150000, 300000, 500000],
+                            borderColor: 'rgba(248, 113, 113, 1)',
+                            backgroundColor: 'rgba(248, 113, 113, 0.1)',
+                            borderWidth: 2.5,
+                            tension: 0.4,
+                            pointRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { 
+                            display: true, 
+                            position: 'top',
+                            labels: { color: 'rgba(255, 255, 255, 0.7)', padding: 16 }
+                        }
+                    },
+                    scales: {
+                        y: { 
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255, 255, 255, 0.06)' },
+                            ticks: { 
+                                color: 'rgba(255, 255, 255, 0.5)',
+                                callback: function(value) { return (value/1000000).toFixed(1) + 'M'; } 
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: 'rgba(255, 255, 255, 0.7)' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Throughput Chart
+        const throughputCtx = document.getElementById('throughputChart');
+        if (throughputCtx) {
+            new Chart(throughputCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['SIM 1', 'SIM 2', 'SIM 3', 'SIM 4'],
+                    datasets: [{
+                        label: 'الرسائل في الساعة (تقدير)',
+                        data: [150, 150, 150, 150],
+                        backgroundColor: [
+                            'rgba(167, 139, 250, 0.8)',
+                            'rgba(167, 139, 250, 0.6)',
+                            'rgba(167, 139, 250, 0.4)',
+                            'rgba(167, 139, 250, 0.3)'
+                        ],
+                        borderColor: 'rgba(167, 139, 250, 1)',
+                        borderWidth: 1,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { 
+                            display: true, 
+                            position: 'top',
+                            labels: { color: 'rgba(255, 255, 255, 0.7)', padding: 16 }
+                        }
+                    },
+                    scales: {
+                        y: { 
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255, 255, 255, 0.06)' },
+                            ticks: { color: 'rgba(255, 255, 255, 0.5)' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: 'rgba(255, 255, 255, 0.7)' }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
